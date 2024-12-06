@@ -5,27 +5,17 @@ class ProofGeneratorTest extends AnyFunSuite {
   import generator._  // This imports all members from ProofGenerator instance
   
   test("Basic grammar construction") {
-    // Create some basic grammar elements
-    val varun = Varun()
-    val ryan = Ryan()
-    val kevin = Kevin(ryan, varun)
-    
-    // Test instance checks
-    assert(varun.isInstanceOf[Shuchi])
-    assert(ryan.isInstanceOf[Rahul])
-    assert(kevin.isInstanceOf[Kai])
-  }
-  
-  test("Complex grammar construction") {
-    val varun = Varun()
-    val ryan = Ryan()
-    val tome = Spencer(Prash)
-    val denzil = Denzil(tome, ryan)
-    val nour = Nour(Prash, denzil, Prash)
-    
-    assert(tome.isInstanceOf[Tome])
-    assert(tome.isInstanceOf[Kai])
-    assert(tome.isInstanceOf[Rahul])
-    assert(denzil.isInstanceOf[Shuchi])
+    assert(eval(Const(1)) == InvalidOdd)
+    assert(eval(Const(1.5)) == NumValue(1.5))
+    assert(eval(Const(2)) == NumValue(2))
+    // Neg Tests
+    assert(eval(Neg(Const(2))) == NumValue(-2))
+    assert(eval(Neg(Const(1))) == InvalidOdd)
+    // Add Tests
+    assert(eval(Plus(Const(2), Const(4))) == NumValue(6))
+    assert(eval(Plus(Const(1), Const(4))) == InvalidOdd)
+    assert(eval(Plus(Const(12), Const(5))) == InvalidOdd)
+    //
+    eval(Minus(Mult(Const(65), Const(2)), Const(61)))
   }
 }
