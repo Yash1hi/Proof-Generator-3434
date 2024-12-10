@@ -1,5 +1,5 @@
 package Math
 
-class Prover(theorms: Array[Theorem], existingGraph: Array[State], endState: State){
-
+class Prover(theorems: Array[Theorem], startState: State, endState: State) {
+  val existingGraph: Seq[State] = Vector(startState)
 }
