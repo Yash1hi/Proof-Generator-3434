@@ -1,13 +1,6 @@
 import Math.*
 
 class ProofGenerator {
-
-  class Theorem(antecedent: Expr, consequent: Expr) {
-//    TODO: Add support for implication theorem type, not just expr equivalence
-    
-  }
-
-
   sealed trait Value {
     override def toString: String = this match {
       case Boolean(n) => n

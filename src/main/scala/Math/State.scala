@@ -1,5 +1,5 @@
 package Math
 
-class State {
+class State(expr: Expr, operation: Operation) {
 
 }
