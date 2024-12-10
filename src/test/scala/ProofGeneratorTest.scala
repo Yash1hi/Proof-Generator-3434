@@ -1,4 +1,5 @@
 import org.scalatest.funsuite.AnyFunSuite
+import Math.*
 
 class ProofGeneratorTest extends AnyFunSuite {
   val generator = new ProofGenerator()
