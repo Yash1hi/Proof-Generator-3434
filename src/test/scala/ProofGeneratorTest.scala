@@ -5,6 +5,7 @@ class ProofGeneratorTest extends AnyFunSuite {
   import generator._  // This imports all members from ProofGenerator instance
   
   test("Test Expression to String") {
-    System.out.println(And(Variable("a"),(Variable("b"))))
+    System.out.println(And(Parenthesis(Implies(And(Variable("a"), Variable("b")), Variable("c"))), Not(Variable("c"))))
+    assert(And(Parenthesis(Implies(And(Variable("a"), Variable("b")), Variable("c"))), Not(Variable("c"))).toString() == "(a∧b→c)∧!c")
   }
 }

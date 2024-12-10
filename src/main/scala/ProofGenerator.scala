@@ -2,12 +2,17 @@ class ProofGenerator {
   sealed trait Expr {
     override def toString: String = this match {
       case Variable(n)          => n
-      case Not(e)               => "!$e"
-      case And(e1, e2)          => "(" + e1 + "∧" + e2 + ")"
-      case Or(e1, e2)           => "($e1 ∨ $e2)"
-      case Implies(e1, e2)      => "($e1 → $e2)"
-      case Parenthesis(e1)      => "($e1)"
+      case Not(e)               => "!" + e
+      case And(e1, e2)          => "" + e1 + "∧" + e2
+      case Or(e1, e2)           => "" + e1 + "∨" + e2
+      case Implies(e1, e2)      => "" + e1 + "→" + e2
+      case Parenthesis(e1)      => "(" + e1 + ")"
     }
+  }
+
+  class Theorem(antecedent: Expr, consequent: Expr) {
+//    TODO: Add support for implication theorem type, not just expr equivalence
+    
   }
 
   case class Variable(n: String) extends Expr
@@ -27,8 +32,6 @@ class ProofGenerator {
   sealed trait ErrorValue extends Value
   case object InvalidDivByZero extends ErrorValue
   case object InvalidOdd extends ErrorValue
-
-
 
 //  def eval(e: Expr): Value = {
 //    e match {
