@@ -11,15 +11,7 @@ class Theorem(antecedent: Expr, consequent: Expr) {
 
   def getApplicable(e: Expr): Vector[Expr] = {
     var exprs = Vector.empty[Expr]
-
-//    val antecedentVars = antecedent.uniqueVariables
-//    val eVars = e.uniqueVariables
-//    if (antecedentVars.size == eVars.size) {
-//      val varMap = antecedentVars.toList.zip(eVars.toList).toMap
-//      if (antecedent.replaceVars(varMap) == e) {
-//        exprs = exprs :+ e
-//      }
-//    }
+    
     val antecedentMatches = antecedent.findMatches(e)
     if (antecedentMatches != null) {
         exprs = exprs :+ e
