@@ -3,14 +3,17 @@ package Math
 import scala.collection.mutable.Queue
 
 class Prover(theorems: Vector[Theorem], startExpr: Expr, endExpr: Expr) {
-  var existingGraph: Vector[State] = Vector.empty[State]
+  var existingGraph: Vector[State] = Vector[State](State(startExpr, null))
   val toExpand: Queue[State] = Queue[State](State(startExpr, null))
 
   def bfs(): State = {
+    // False value:
+    val falseEndExpr = Not(endExpr)
+    
     while (toExpand.nonEmpty) {
       val currentState = toExpand.dequeue()
 
-      if (currentState.getExpr() == endExpr) {
+      if (currentState.getExpr() == endExpr || currentState.getExpr() == falseEndExpr) {
         return currentState
       }
 

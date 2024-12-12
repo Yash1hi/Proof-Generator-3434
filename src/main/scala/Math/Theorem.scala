@@ -1,6 +1,6 @@
 package Math
 
-class Theorem(antecedent: Expr, consequent: Expr, name: String) {
+class Theorem(antecedent: Expr, consequent: Expr, name: String, twoWay: Boolean = false) {
   def getAntecedent: Expr = {
     antecedent
   }
@@ -13,6 +13,14 @@ class Theorem(antecedent: Expr, consequent: Expr, name: String) {
     name
   }
 
+  override def toString: String = {
+    if (twoWay) {
+      name + ": " + Equivalent(antecedent, consequent);
+    } else {
+      name + ": " + Implies(antecedent, consequent);
+    }
+  }
+
   // returns (Expr Applied to, Expr with theorem applied)
   def getApplicable(e: Expr): Vector[(Expr, Expr)] = {
     var exprs = Vector.empty[(Expr, Expr)]
@@ -20,6 +28,11 @@ class Theorem(antecedent: Expr, consequent: Expr, name: String) {
     val antecedentMatches = antecedent.findMatches(e)
     if (antecedentMatches != null) {
         exprs = exprs :+ (e, consequent.replaceVars(antecedentMatches))
+    }
+
+    val consequentMatches = consequent.findMatches(e)
+    if (consequentMatches != null) {
+      exprs = exprs :+ (e, antecedent.replaceVars(consequentMatches))
     }
 
     e match {
