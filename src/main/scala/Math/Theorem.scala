@@ -30,9 +30,11 @@ class Theorem(antecedent: Expr, consequent: Expr, name: String, twoWay: Boolean 
         exprs = exprs :+ (e, consequent.replaceVars(antecedentMatches))
     }
 
-    val consequentMatches = consequent.findMatches(e)
-    if (consequentMatches != null) {
-      exprs = exprs :+ (e, antecedent.replaceVars(consequentMatches))
+    if (twoWay) {
+      val consequentMatches = consequent.findMatches(e)
+      if (consequentMatches != null) {
+        exprs = exprs :+ (e, antecedent.replaceVars(consequentMatches))
+      }
     }
 
     e match {
