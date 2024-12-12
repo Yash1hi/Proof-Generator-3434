@@ -1,12 +1,16 @@
 package Math
 
-class Theorem(antecedent: Expr, consequent: Expr) {
+class Theorem(antecedent: Expr, consequent: Expr, name: String) {
   def getAntecedent: Expr = {
     antecedent
   }
 
   def getConsequent: Expr = {
     consequent
+  }
+  
+  def getName: String = {
+    name
   }
 
   // returns (Expr Applied to, Expr with theorem applied)

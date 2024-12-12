@@ -16,7 +16,7 @@ class State(expr: Expr, operation: Operation) {
   def getChildren(): Vector[State] = {
     children
   }
-  
+
   def getOperation(): Operation = {
     operation
   }
@@ -29,8 +29,14 @@ class State(expr: Expr, operation: Operation) {
        children = children :+ childState
      }
    }
-    
+
    return getChildren()
   }
 
+  def getProof(): String = {
+    if (this.operation == null) {
+      return "   " + expr + " [GIVEN] \n"
+    }
+    operation.getPreviousState.getProof() + "      [" + operation.getAppliedTheorem.getName + "]\n" + "-> " + expr + "\n"
+  }
 }
