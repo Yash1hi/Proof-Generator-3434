@@ -23,8 +23,11 @@ class ProofGeneratorTest extends AnyFunSuite {
 
     System.out.println("expression = " + expr1)
 
-    val applicableExpressions: Seq[Expr] = t2.getApplicable(expr1)
-    applicableExpressions.foreach((e: Expr) => println(e))
+    val applicableExpressions: Seq[(Expr, Expr)] = t2.getApplicable(expr1)
+    applicableExpressions.foreach((e1: Expr, e2: Expr) => {
+      println("Theorem applied to: " + e1)
+      println("Result: " + e2)
+    })
 
   }
 }
